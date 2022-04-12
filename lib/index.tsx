@@ -1,10 +1,10 @@
+// After
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Button from './button';
+const container = document.getElementById('app') as HTMLElement; // 必须确保 container 不是空
 // import Button from './Button';
-console.log(ReactDOM)
 // export default function Index() {
 //     return <div>xxxx</div>
 // }
-
-ReactDOM.render(<Button/>, document.body)
+createRoot(container).render(<Button />)
