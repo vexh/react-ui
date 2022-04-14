@@ -8,4 +8,4 @@ const container = document.getElementById('app') as HTMLElement; // 必须确保
 // export default function Index() {
 //     return <div>xxxx</div>
 // }
-createRoot(container).render(<Icon name="wechat" />)
+createRoot(container).render(<Icon name="alipay" />)

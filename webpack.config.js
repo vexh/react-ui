@@ -19,11 +19,12 @@ module.exports = {
     module: {
         rules: [
             {
-                // test: /\.tsx?$/,
-                // loader: "awesome-typescript-loader",
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
-                // exclude: /node_modules/,
+            },
+            {
+                test: /\.svg/,
+                loader: 'svg-sprite-loader',
             }
         ]
     },
