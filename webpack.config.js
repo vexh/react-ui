@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // mode: "production",
+
     entry: {
         index: './lib/index.tsx'
     },
@@ -18,8 +19,11 @@ module.exports = {
     module: {
         rules: [
             {
+                // test: /\.tsx?$/,
+                // loader: "awesome-typescript-loader",
                 test: /\.tsx?$/,
-                loader: "awesome-typescript-loader"
+                loader: 'ts-loader',
+                // exclude: /node_modules/,
             }
         ]
     },
