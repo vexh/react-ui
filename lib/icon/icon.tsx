@@ -3,10 +3,10 @@
  */
 import React from "react";
 // import './importIcons';
-import wechat from './icons/wechat.svg';
-import alipay from "./icons/alipay.svg";
-import qq from "./icons/qq.svg";
-import classes from './helpers/classes';
+import wechat from '../icons/wechat.svg';
+import alipay from "../icons/alipay.svg";
+import qq from "../icons/qq.svg";
+import classes from '../helpers/classes';
 
 console.log(wechat);
 console.log(alipay);

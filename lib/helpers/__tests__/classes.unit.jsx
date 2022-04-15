@@ -1,4 +1,4 @@
-import classes from '../helpers/classes';
+import classes from '../classes';
 
 describe('classes.tsx', () => {
     it('传递一个参数', () => {
