@@ -1,3 +1,6 @@
+/**
+ * 实现各类事件
+ */
 import React from "react";
 // import './importIcons';
 import wechat from './icons/wechat.svg';
@@ -7,14 +10,14 @@ import qq from "./icons/qq.svg";
 console.log(wechat);
 console.log(alipay);
 console.log(qq);
-interface IconProps {
+interface IconProps extends React.SVGAttributes<SVGElement> {
   name: string;
 }
 
-const Icon: React.FunctionComponent<IconProps> = ({ name }) => {
+const Icon: React.FunctionComponent<IconProps> = ({ name, ...restProps }) => {
   return (
     <>
-      <svg>
+      <svg {...restProps}>
         <use xlinkHref={`#${name}`}></use>
       </svg>
     </>
