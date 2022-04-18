@@ -6,7 +6,7 @@ module.exports = {
   },
   // testEnvironment: 'jsdom',
   // setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  reporters: ["default"],
+  reporters: ["default", "jest-junit"],
   collectCoverage: true,
   collectCoverageFrom: [
     "lib/**/*.{ts,tsx}",
