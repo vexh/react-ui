@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="7" failures="0" errors="0" time="0.472">
+  <testsuite name="Icon 组件" errors="0" failures="0" skipped="0" timestamp="2022-04-18T06:23:22" time="0.295" tests="2">
+    <testcase classname="Icon 组件 成功渲染" name="Icon 组件 成功渲染" time="0.006">
+    </testcase>
+    <testcase classname="Icon 组件 on click" name="Icon 组件 on click" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes.tsx" errors="0" failures="0" skipped="0" timestamp="2022-04-18T06:23:23" time="0.029" tests="4">
+    <testcase classname="classes.tsx 传递一个参数" name="classes.tsx 传递一个参数" time="0">
+    </testcase>
+    <testcase classname="classes.tsx 两个参数" name="classes.tsx 两个参数" time="0">
+    </testcase>
+    <testcase classname="classes.tsx 奇怪的参数,undefined,null,中文" name="classes.tsx 奇怪的参数,undefined,null,中文" time="0">
+    </testcase>
+    <testcase classname="classes.tsx 空的参数" name="classes.tsx 空的参数" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2022-04-18T06:23:23" time="0.027" tests="1">
+    <testcase classname=" button 是个 div" name=" button 是个 div" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
