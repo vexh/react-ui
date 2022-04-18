@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon 是个 svg 1`] = `
+exports[`Icon 组件 成功渲染 1`] = `
 <svg
   className="react-ui"
 >
