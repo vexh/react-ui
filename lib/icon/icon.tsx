@@ -2,15 +2,9 @@
  * 实现各类事件
  */
 import React from "react";
-// import './importIcons';
-import wechat from '../icons/wechat.svg';
-import alipay from "../icons/alipay.svg";
-import qq from "../icons/qq.svg";
+import './importIcons';
 import classes from '../helpers/classes';
 import './icon.scss';
-console.log(wechat);
-console.log(alipay);
-console.log(qq);
 interface IconProps extends React.SVGAttributes<SVGElement> {
   name: string;
 }

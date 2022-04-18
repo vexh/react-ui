@@ -10,4 +10,4 @@ const container = document.getElementById('app') as HTMLElement; // 必须确保
 // export default function Index() {
 //     return <div>xxxx</div>
 // }
-createRoot(container).render(<Icon name="alipay" onClick={() => {console.log('click')}} onMouseEnter={() => {console.log('onMouseEnter')}} onMouseLeave={() => {console.log('onMouseLeave')}} />)
+createRoot(container).render(<Icon name="wechat" onClick={() => {console.log('click')}} onMouseEnter={() => {console.log('onMouseEnter')}} onMouseLeave={() => {console.log('onMouseLeave')}} />)
