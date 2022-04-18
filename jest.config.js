@@ -4,15 +4,5 @@ module.exports = {
       "<rootDir>/__mocks__/fileMock.js",
     "\\.(css|scss|less|sass)$": "<rootDir>/__mocks__/styleMock.js",
   },
-  // testEnvironment: 'jsdom',
-  // setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  reporters: ["default", "jest-junit"],
-  collectCoverage: true,
-  collectCoverageFrom: [
-    "lib/**/*.{ts,tsx}",
-    "!**/node_modules/**",
-    "!**/vendor/**",
-  ],
-  coverageDirectory: 'coverage',
-  coverageReporters: ["text", "lcov"]
+  reporters: ["default"]
 };
