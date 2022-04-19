@@ -3,7 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Routes, Route, Link,  HashRouter as Router } from "react-router-dom";
 import Button from './button';
-import Icon from './icon/icon';
+import IconExample from './icon/icon.example';
 import DialogExample from './dialog/dialog.example';
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
 function Routers() {
   return <Routes>
   <Route path="/" element={<Home />} />
-  <Route path="/icon" element={<Icon name="wechat"/>} />
+  <Route path="/icon" element={<IconExample />} />
   <Route path="/button" element={<Button />} />
   <Route path="/dialog" element={<DialogExample />} />
 </Routes>
