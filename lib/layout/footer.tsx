@@ -2,7 +2,7 @@ import React, { HTMLAttributes, ReactNode } from 'react'
 import {scopedClass} from '../helpers/classes';
 
 interface Props extends HTMLAttributes<HTMLElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const sc = scopedClass("react-ui-layout");

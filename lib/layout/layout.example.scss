@@ -3,26 +3,24 @@ $backgroudColor-2: #108EE8;
 $backgroudColor-3: #7DBCEA;
 $backgroudColor-4: #3BA0E9;
 
-.react-ui-layout {
-  &-header {
-    background-color: $backgroudColor-1;
-  }
-  &-content {
-    background-color: $backgroudColor-2;
-  }
-  &-footer {
-    background-color: $backgroudColor-3;
-  }
-  &-aside {
-    background-color: $backgroudColor-4;
-  }
-}
 
 .react-ui-layout {
   &-example {
     color: white;
     width: 600px;
     height: 300px;
+    .react-ui-layout-header {
+      background-color: $backgroudColor-1;
+    }
+    .react-ui-layout-content {
+      background-color: $backgroudColor-2;
+    }
+    .react-ui-layout-footer {
+      background-color: $backgroudColor-3;
+    }
+    .react-ui-layout-aside {
+      background-color: $backgroudColor-4;
+    }
   }
 }
 

@@ -1,0 +1,33 @@
+.react-ui-layout {
+  background-color: #FFFFFF;
+  &-header {
+    font-size: 32px;
+    padding: 12px 20px;
+    .logo {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+  }
+  &-aside {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    h1 {
+      font-size: 20px;
+    }
+    ul {
+      font-size: 18px;
+      li {
+        margin: 10px 0;
+        *:first-child {
+          margin-top: 0;
+        }
+        *:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

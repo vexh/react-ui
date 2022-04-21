@@ -1,35 +1,50 @@
-// After
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Routes, Route, Link, HashRouter as Router } from "react-router-dom";
 import Button from "./button";
+import Layout from "./layout/layout";
 import IconExample from "./icon/icon.example";
 import DialogExample from "./dialog/dialog.example";
 import LayoutExample from "./layout/layout.example";
+import Header from "./layout/header";
+import Aside from "./layout/aside";
+import Footer from "./layout/footer";
+import Content from "./layout/content";
+import Logo from "./icons/logo.png";
+import "./example.scss";
 
 export default function App() {
   return (
-    <div className="App">
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <ul>
-        <li>
-          <Link to="/icon">Icon</Link>
-        </li>
-        <li>
-          <Link to="/button">Button</Link>
-        </li>
-        <li>
-          <Link to="/dialog">Dialog</Link>
-        </li>
-        <li>
-          <Link to="/layout">Layout</Link>
-        </li>
-      </ul>
-      <Routers />
-    </div>
+    <Layout>
+      <Header>
+        <div className="logo">
+          <img src={Logo} alt="" width={44} />
+          <span>deepin-react</span> 
+        </div>
+      </Header>
+      <Layout>
+        <Aside>
+          <h1>组件</h1>
+          <ul>
+            <li>
+              <Link to="/icon">Icon</Link>
+            </li>
+            <li>
+              <Link to="/button">Button</Link>
+            </li>
+            <li>
+              <Link to="/dialog">Dialog</Link>
+            </li>
+            <li>
+              <Link to="/layout">Layout</Link>
+            </li>
+          </ul>
+        </Aside>
+        <Content>
+          <Routers />
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
 
