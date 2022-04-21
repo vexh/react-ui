@@ -5,14 +5,13 @@
     flex-grow: 1;
   }
   & & {
-    flex-direction: row;
     flex-grow: 1;   
+    flex-direction: row;
   }
   &-hasSide {
     flex-direction: row;
     .react-ui-layout {
       flex-direction: column;
-      flex-grow: 1;   
     }
   }
 }

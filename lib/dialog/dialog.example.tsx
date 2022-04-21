@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Dialog, alert, modal, confirm } from "../../lib/index";
+import Dialog, { alert, modal, confirm } from "./dialog";
+import Button from "../button/button";
 
 function DialogExample1() {
   const [visible, setVisible] = useState(false);
@@ -7,13 +8,13 @@ function DialogExample1() {
   return (
     <>
       <div>Example 1</div>
-      <button
+      <Button
         onClick={() => {
           setVisible(!visible);
         }}
       >
         切换
-      </button>
+      </Button>
       <Dialog
         visible={visible}
         onClose={() => setVisible(false)}
@@ -31,13 +32,13 @@ function DialogExample2() {
   return (
     <>
       <div>Example 2</div>
-      <button
+      <Button
         onClick={() => {
           setVisible(!visible);
         }}
       >
         切换
-      </button>
+      </Button>
       <Dialog
         visible={visible}
         onClose={() => setVisible(false)}
@@ -54,37 +55,37 @@ function DialogExampleModal() {
   return (
     <>
       <div>Example 3</div>
-      <button
+      <Button
         onClick={() => {
           const close = modal(<strong>你好</strong>, [
-            <button
+            <Button
               onClick={() => {
                 close();
                 console.log("yes");
               }}
             >
               Yes
-            </button>,
-            <button
+            </Button>,
+            <Button
               onClick={() => {
                 close();
                 console.log("no");
               }}
             >
               No
-            </button>,
+            </Button>,
           ]);
         }}
       >
         modal
-      </button>
+      </Button>
     </>
   );
 }
 
 function DialogExampleConfirm() {
   return (
-    <button
+    <Button
       onClick={() => {
         confirm(
           "是否确定提交?",
@@ -98,18 +99,18 @@ function DialogExampleConfirm() {
       }}
     >
       confirm
-    </button>
+    </Button>
   );
 }
 function DialogExampleAlert() {
   return (
-    <button
+    <Button
       onClick={() => {
         alert('一行提示信息', () => {console.log('afterAlertClosed.')});
       }}
     >
       alert
-    </button>
+    </Button>
   );
 }
 
