@@ -1,6 +1,7 @@
 import React, { FormHTMLAttributes, ReactElement } from "react";
-import validator, { FormErrors, noErrors } from "./validator";
+import { FormErrors } from "./validator";
 import "./form.scss";
+import Input from "../input/input";
 
 interface FieldType {
   name: string;
@@ -41,7 +42,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
               <tr key={field.name}>
                 <td>{field.name}</td>
                 <td>
-                  <input
+                  <Input
                     type={field.input.type}
                     value={formData[field.name] || ""}
                     onChange={(e) => onInputChange(field.name, e.target.value)}

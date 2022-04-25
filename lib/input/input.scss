@@ -1,0 +1,13 @@
+@import "../helper";
+input {
+  background: #EBEBED;
+  border: 2px solid #ffffff;
+  line-height: 22px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: border 250ms;
+  &:focus {
+    outline: none;
+    border: 2px solid $main-color;
+  }
+}
