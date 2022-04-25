@@ -1,36 +1,56 @@
-import React, { FormHTMLAttributes } from "react";
+import React, { ChangeEvent, ChangeEventHandler, FormEventHandler, FormHTMLAttributes, ReactElement, useState } from "react";
 import "./form.scss";
 
 interface FieldType {
   name: string;
-  type: string;
+  input: { type: string };
   label: string;
 }
 
+export type FormValue = { [k: string]: any };
+
 interface Props extends FormHTMLAttributes<HTMLFormElement> {
   fields: Array<FieldType>;
-  data: any;
+  buttons: Array<ReactElement>;
+  value: FormValue;
+  onChange: (value: FormValue) => void;
 }
 
 const Form: React.FunctionComponent<Props> = (props) => {
-  const { className, data, ...rest } = props;
-  console.log(props.fields);
-  console.log(data);
+  // const { className, onSubmit } = props;
+  const formData = props.value;
+
+  const onInputChange = (name: string, value: string) => {
+    props.onChange({ ...formData, [name]: value });
+  };
+
   return (
-    <form {...rest}>
-      <table className="react-ui-form-table">
-        <tbody>
-          {props.fields.map((field) => (
-            <tr key={field.name}>
-              <td>{field.name}</td>
-              <td>
-                <input type={field.type} defaultValue={data[field.name]} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </form>
+    <>
+    {JSON.stringify(formData)}
+      <form
+        onSubmit={(formData) => {
+          console.log(formData);
+        }}
+      >
+        <table className="react-ui-form-table">
+          <tbody>
+            {props.fields.map((field) => (
+              <tr key={field.name}>
+                <td>{field.name}</td>
+                <td>
+                  <input
+                    type={field.input.type}
+                    value={formData[field.name] || ""}
+                    onChange={(e) => onInputChange(field.name, e.target.value)}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div>{props.buttons}</div>
+      </form>
+    </>
   );
 };
 

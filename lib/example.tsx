@@ -16,7 +16,7 @@ export default function App() {
       <Header className="site-header">
         <div className="logo">
           <img src={Logo} width="48" height="48" alt="" />
-          <span> FUI </span>
+          <span> deepin-react </span>
         </div>
       </Header>
       <Layout>

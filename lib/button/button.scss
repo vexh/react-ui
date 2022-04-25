@@ -8,7 +8,7 @@ $bg-normal-press: #CCD4DF;
 $bg-normal-disable: #F5F5F5;
 
 .react-ui-button {
-  padding: 8px 40px;
+  padding: 8px 20px;
   border-radius: 6px;
   outline: none;
   border: none;
@@ -16,6 +16,9 @@ $bg-normal-disable: #F5F5F5;
   font-weight: 500;
   min-width: 200px;
   box-sizing: border-box;
+  &-small {
+    min-width: 130px;
+  }
   &-normal {
     color: $text-normal;
     background-color: $bg-normal;
