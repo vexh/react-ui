@@ -35,7 +35,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
           console.log(formData);
         }}
       >
-        <table className="react-ui-form-table">
+        <table className="deepin-form-table">
           <tbody>
             {props.fields.map((field) => (
               <tr key={field.name}>

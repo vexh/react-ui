@@ -21,7 +21,7 @@ export default function () {
     </>
   );
 }
-const sc = scopedClass("react-ui-layout")
+const sc = scopedClass("deepin-layout")
 const Example1 = () => {
   return (
     <Layout className={sc("example")} style={{ width: "500px", height: "500px" }}>

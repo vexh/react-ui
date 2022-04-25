@@ -8,7 +8,7 @@ module.exports = Object.assign({}, base, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'react-ui',
+            title: 'deepin-react',
             template: 'index.html'
         })
     ],

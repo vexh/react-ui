@@ -1,4 +1,4 @@
-.react-ui-layout {
+.deepin-layout {
   display: flex;
   flex-direction: column;
   &-content {
@@ -10,7 +10,7 @@
   }
   &-hasSide {
     flex-direction: row;
-    .react-ui-layout {
+    .deepin-layout {
       flex-direction: column;
     }
   }

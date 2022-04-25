@@ -8,7 +8,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "small" | "middle" | "big";
 }
 
-const sc = scopedClass("react-ui-button");
+const sc = scopedClass("deepin-button");
 
 const Button: React.FunctionComponent<Props> = (props) => {
   const { className, level, ...restProps } = props;

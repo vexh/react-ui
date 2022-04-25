@@ -17,7 +17,7 @@ function makeCommonClassName(prefix: string) {
     return [prefix, className].filter(Boolean).join("-");
   };
 }
-const scopedClassName = makeCommonClassName("react-ui-dialog");
+const scopedClassName = makeCommonClassName("deepin-dialog");
 const sc = scopedClassName;
 
 const Dialog: React.FunctionComponent<DialogProps> = ({ visible, buttons, children, onClose, closeOnMaskClick }) => {

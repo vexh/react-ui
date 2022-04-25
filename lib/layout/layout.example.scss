@@ -4,21 +4,21 @@ $backgroudColor-3: #7DBCEA;
 $backgroudColor-4: #3BA0E9;
 
 
-.react-ui-layout {
+.deepin-layout {
   &-example {
     color: white;
     width: 600px;
     height: 300px;
-    .react-ui-layout-header {
+    .deepin-layout-header {
       background-color: $backgroudColor-1;
     }
-    .react-ui-layout-content {
+    .deepin-layout-content {
       background-color: $backgroudColor-2;
     }
-    .react-ui-layout-footer {
+    .deepin-layout-footer {
       background-color: $backgroudColor-3;
     }
-    .react-ui-layout-aside {
+    .deepin-layout-aside {
       background-color: $backgroudColor-4;
     }
   }

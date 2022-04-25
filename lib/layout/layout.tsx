@@ -5,7 +5,7 @@ import "./layout.scss";
 
 interface Props extends HTMLAttributes<HTMLElement> {}
 
-const sc = scopedClass("react-ui-layout");
+const sc = scopedClass("deepin-layout");
 const Layout: React.FunctionComponent<Props> = (props) => {
   const { className, ...rest } = props;
   let hasSide = false;

@@ -5,7 +5,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-const sc = scopedClass("react-ui-layout");
+const sc = scopedClass("deepin-layout");
 
 const Footer: React.FunctionComponent<Props> = (props) => {
   const { className, ...rest } = props;
