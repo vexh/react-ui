@@ -1,4 +1,4 @@
-import React, { FormHTMLAttributes, ReactElement } from "react";
+import React, { FormEventHandler, FormHTMLAttributes, ReactElement } from "react";
 import { FormErrors } from "./validator";
 import "./form.scss";
 import Input from "../input/input";
@@ -15,38 +15,46 @@ interface Props extends FormHTMLAttributes<HTMLFormElement> {
   fields: Array<FieldType>;
   buttons: Array<ReactElement>;
   value: FormValue;
+  errors: FormErrors;
+  errorsDisplayMode?: "first" | "all";
   onChange: (value: FormValue) => void;
-  errors: FormErrors
+  onSubmit: FormEventHandler;
 }
 
+const showErrorMessage = () => {};
 
 const Form: React.FunctionComponent<Props> = (props) => {
   // const { className, onSubmit } = props;
   const formData = props.value;
-
   const onInputChange = (name: string, value: string) => {
     props.onChange({ ...formData, [name]: value });
   };
-  console.log(props.errors);
-  
+
   return (
     <>
       <form
         onSubmit={(formData) => {
-          console.log(formData);
+          props.onSubmit(formData);
         }}
       >
-        <table className="deepin-form-table">
+        <table className="deepin-form">
           <tbody>
             {props.fields.map((field) => (
               <tr key={field.name}>
-                <td>{field.name}</td>
+                <td>{field.label}</td>
                 <td>
-                  <Input
-                    type={field.input.type}
-                    value={formData[field.name] || ""}
-                    onChange={(e) => onInputChange(field.name, e.target.value)}
-                  />
+                  <Input type={field.input.type} value={formData[field.name]||''} onChange={(e) => onInputChange(field.name, e.target.value)} />
+                  <div className="deepin-form-errors">
+                    {props.errors[field.name] ? (
+                      props.errorsDisplayMode === "first" ? (
+                        props.errors[field.name]?.[0]
+                      ) : (
+                        props.errors[field.name].join(" ")
+                      )
+                    ) : (
+                      <span>&nbsp;</span>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
@@ -58,4 +66,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
   );
 };
 
+Form.defaultProps = {
+  errorsDisplayMode: "first",
+};
 export default Form;

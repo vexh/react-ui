@@ -1,9 +1,21 @@
 import * as React from "react";
 import Form from "./form";
 import Button from "../../lib/button/button";
-import validator, { FormErrors, noErrors } from "./validator";
+import validate, { FormErrors, noErrors } from "./validator";
 import { FormValue } from "./form";
 import { useState } from "react";
+
+const usernames = ['Jackjack', 'Alice', 'Bobbob'];
+const checkUsername = (username: string, success: (value: any) => void, fail: () => void) => {
+  setTimeout(() => {
+    console.log('username 验证完毕')
+    if (usernames.indexOf(username)) {
+      success(value);
+    } else {
+      fail();
+    }
+  }, 3000)
+}
 
 const rules = [
   {
@@ -13,35 +25,44 @@ const rules = [
   },
   {
     key: "password",
+    required: true,
     maxLength: 12,
-  },
+    validator: (value: string) => {
+      return new Promise<string>((resolve, reject) => {
+        checkUsername(value, resolve, reject);
+      });
+    }
+  }
 ];
 
 export default function Example() {
   const formFields = [
-    { label: "姓名", name: "username", input: { type: "text" } },
+    { label: "用户名", name: "username", input: { type: "text" } },
     { label: "密码", name: "password", input: { type: "password" } },
   ];
-  const [formData, setFormData] = useState<FormValue>({ username: "姓名", password: 111100 });
+  const [formData, setFormData] = useState<FormValue>({});
   const [formErrors, setFormErrors] = useState<FormErrors>({});
-  
-  const formChange = (value: FormValue) => {
-    const errors = validator(formData, rules);
-    console.log(noErrors(errors));
+
+  const onSubmit = () => {
+    const cb = (errors: any) => {
+      setFormErrors(errors);
+    }
+    validate(formData, rules, cb)
+    if (noErrors(formErrors)) {
+    }
+  };
+  const onFormChange = (value: FormValue) => {
     setFormData(value);
-    setFormErrors(errors);
   };
   return (
     <Form
-      onSubmit={() => {
-        console.log("onSubmit");
-      }}
+      onSubmit={onSubmit}
       fields={formFields}
       value={formData}
-      onChange={formChange}
+      onChange={onFormChange}
       errors={formErrors}
       buttons={[
-        <Button key="1" type="submit" size="small">
+        <Button key="1" type="submit" size="small" style={{ marginRight: "10px" }}>
           提交
         </Button>,
         <Button key="2" size="small">
@@ -51,3 +72,7 @@ export default function Example() {
     />
   );
 }
+function value(value: any) {
+  throw new Error("Function not implemented.");
+}
+
