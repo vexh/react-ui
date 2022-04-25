@@ -1,4 +1,5 @@
-import React, { ChangeEvent, ChangeEventHandler, FormEventHandler, FormHTMLAttributes, ReactElement, useState } from "react";
+import React, { FormHTMLAttributes, ReactElement } from "react";
+import validator from "./validator";
 import "./form.scss";
 
 interface FieldType {
@@ -16,6 +17,17 @@ interface Props extends FormHTMLAttributes<HTMLFormElement> {
   onChange: (value: FormValue) => void;
 }
 
+const rules = [
+  {
+    key: "username",
+    required: true,
+    minLength: 6,
+  },
+  {
+    key: "password",
+    maxLength: 12,
+  },
+];
 const Form: React.FunctionComponent<Props> = (props) => {
   // const { className, onSubmit } = props;
   const formData = props.value;
@@ -23,10 +35,12 @@ const Form: React.FunctionComponent<Props> = (props) => {
   const onInputChange = (name: string, value: string) => {
     props.onChange({ ...formData, [name]: value });
   };
+  const errors = validator(formData, rules);
 
   return (
     <>
-    {JSON.stringify(formData)}
+      {JSON.stringify(formData)} <br></br>
+      {JSON.stringify(errors)}
       <form
         onSubmit={(formData) => {
           console.log(formData);

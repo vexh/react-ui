@@ -1,6 +1,7 @@
 import * as React from "react";
 import Form from "./form";
 import Button from "../../lib/button/button";
+import validator from "./validator";
 import { FormValue } from "./form";
 
 export default function Example() {
