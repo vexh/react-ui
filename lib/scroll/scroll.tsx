@@ -7,27 +7,33 @@ interface Props extends HTMLAttributes<HTMLDivElement> {}
 
 const Scroll: React.FunctionComponent<Props> = (props) => {
   const { className, ...rest } = props;
-  const [barHeight, setBarHeight] = useState<number>();
   const container = useRef<HTMLDivElement>(null);
-  useEffect(() => {
 
-    const h = container.current?.getBoundingClientRect().height || 1;
-    const h2 = container.current?.scrollHeight || 1;
-    
+  const [barHeight, setBarHeight] = useState<number>();
+  const [scrollTop, setScrollTop] = useState<number>();
+
+  const onScroll = () => {
+    const { current } = container;
+    const scrollTop = (current!.scrollTop * current!.getBoundingClientRect().height) / current!.scrollHeight;
+    setScrollTop(scrollTop);
+  };
+  useEffect(() => {
+    // 计算bar高度
+    const h = container.current!.getBoundingClientRect().height;
+    const h2 = container.current!.scrollHeight;
     setBarHeight((h * h) / h2);
+    // 计算bar的位置（scrollTop值）
+    // container.current?.scrollTop / h2 === x / h ==>
   }, []);
-  console.log({barHeight});
-  // const getHeight: UIEventHandler = (e) => {
-  //   console.log("scrollTop", e.currentTarget.scrollTop);
-  //   console.log("scrollHeight", e.currentTarget.scrollHeight);
+  console.log({ barHeight }, { scrollTop });
   // };
   return (
     <div className={classes("deepin-scroll", props.className)} {...rest}>
-      <div className="deepin-scroll-inner" style={{ right: -scrollbarWidth() }} ref={container} onScroll={() => {}}>
+      <div className="deepin-scroll-inner" style={{ right: -scrollbarWidth() }} ref={container} onScroll={onScroll}>
         {props.children}
       </div>
       <div className="deepin-scroll-track">
-        <div className="deepin-scroll-bar" style={{ height: `${barHeight}px` }}></div>
+        <div className="deepin-scroll-bar" style={{ height: `${barHeight}px`, transform: `translateY(${scrollTop}px)` }}></div>
       </div>
     </div>
   );
