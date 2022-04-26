@@ -9,6 +9,7 @@ import LayoutExample from "./layout/layout.example";
 import FormExample from "./form/form.example";
 import Logo from "./icons/logo.png";
 import "./example.scss";
+import ScrollExample from "./scroll/scroll.example";
 
 export default function App() {
   return (
@@ -38,6 +39,10 @@ export default function App() {
             <li>
               <Link to="/form">表单</Link>
             </li>
+            <li>
+              <Link to="/scroll">滚动条</Link>
+            </li>
+            
           </ul>
         </Aside>
         <Content className="site-main">
@@ -58,6 +63,7 @@ function Routers() {
       <Route path="/dialog" element={<DialogExample />} />
       <Route path="/layout" element={<LayoutExample />} />
       <Route path="/form" element={<FormExample />} />
+      <Route path="/scroll" element={<ScrollExample />}></Route>
     </Routes>
   );
 }
