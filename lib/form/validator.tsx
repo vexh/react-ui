@@ -2,68 +2,89 @@ import { createBrowserHistory } from "history";
 import { FormValue } from "./form";
 
 interface FormRule {
-  key: string,
+  key: string;
   required?: boolean;
   minLength?: number;
   maxLength?: number;
-  validator?: (value: string) => Promise<string>
+  validator?: (value: string) => Promise<string>;
 }
 
 // type FormRules = FormRule[];
 type FormRules = Array<FormRule>;
 
 export interface FormErrors {
-  [K: string] :string[]
+  [K: string]: string[];
 }
 
 function isEmpty(value: string | undefined | null) {
-  return !(value?.trim())
+  return !value?.trim();
 }
 
 export function noErrors(errors: FormErrors) {
   return !Object.keys(errors).length;
 }
 
-type OneError = string | Promise<string>
+type OneError = string | Promise<string>;
 
-function validate(value: FormValue, rules: FormRules, callback: (error: any) => void) {
+function Validate(value: FormValue, rules: FormRules, callback: (error: any) => void) {
   const errors: { [key: string]: OneError[] } = {};
-  const addErrorMsg = (key: string, oneError: OneError) => {
+  const addError = (key: string, oneError: OneError) => {
     if (errors[key] === undefined) {
-      errors[key] = []
+      errors[key] = [];
     }
     errors[key].push(oneError);
-
-  }
-  rules.forEach(r => {
+  };
+  rules.forEach((r) => {
     const v = value[r.key];
     if (r.required && isEmpty(v)) {
-      addErrorMsg(r.key, '必填');
+      addError(r.key, "必填");
     }
     if (r.minLength && !isEmpty(v) && v?.length < r.minLength) {
-      addErrorMsg(r.key, '太短');
+      addError(r.key, "太短");
     }
     if (r.maxLength && !isEmpty(v) && v?.length > r.maxLength) {
-      addErrorMsg(r.key, '太长');
+      addError(r.key, "太长");
     }
     if (r.validator) {
       const promise = r.validator(v);
-      addErrorMsg(r.key, promise);
+      addError(r.key, promise);
     }
-  })
-  console.log(errors);
-  
-  const promises = Object.keys(errors).map(errorKey => errors[errorKey]).flat().filter((error: OneError) => error instanceof Promise);
-  // console.log(errors, Object.keys(errors), promises)
-  Promise.all(promises).then(() => {
-    Object.keys(errors).map(key => {
-      const ers = errors[key].filter(stringOrPromise => !(stringOrPromise instanceof Promise));
-      console.log(ers);
-      callback(errors);
-    })
-  }, () => {
-    console.log('出问题了')
-  })
+  });
+
+  function hasError(item: [string, undefined] | [string, string]): item is [string, string] {
+    const [key, value] = item;
+    return !!value;
+  }
+
+  const flattenErrors = Object.keys(errors)
+    .map((key) => errors[key].map<[string, OneError]>((error) => [key, error]))
+    .flat();
+
+  const formattedPromises = flattenErrors.map((item) => {
+    const [key, stringOrPromise] = item;
+    const promise = stringOrPromise instanceof Promise ? stringOrPromise : Promise.reject(stringOrPromise);
+    return promise.then<[string, undefined], [string, string]>(
+      () => [key, undefined],
+      (reason) => [key, reason]
+    );
+  });
+
+  Promise.all(formattedPromises).then((results) => {
+    callback(zip(results.filter<[string, string]>(hasError)));
+  });
 }
 
-export default validate;
+// [ ['username', 'unique']
+// ['username', 'unique']
+// ['password', 'unique']
+// ['password', 'unique'] ]
+function zip(kvList: [string, string][]) {
+  const result: { [key: string]: string[] } = {};
+  kvList.map(([key, value]) => {
+    result[key] = result[key] || [];
+    result[key].push(value);
+  });
+  return result;
+}
+
+export default Validate;
