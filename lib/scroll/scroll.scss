@@ -1,6 +1,7 @@
 .deepin-scroll {
   position: relative;
   overflow: hidden;
+  border: 1px solid blue;
   &-inner {
     overflow: auto;
     position: absolute;
@@ -8,7 +9,9 @@
     right: 0;
     top: 0;
     bottom: 0;
-    border: 1px solid blue;
+    &::-webkit-scrollbar {
+      overflow: hidden;
+    }
   }
   &-track {
     width: 8px;
@@ -16,7 +19,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-    // border: 1px solid black;
   }
   &-bar {
     width: 8px;
@@ -25,5 +27,17 @@
     background-color: #bbb;
     border-radius: 4px;
   }
-
+  &-pulling {
+    border: 1px solid red;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-text {
+      font-size: 16px;
+    }
+    &-icon {
+      font-size: 22px;
+    }
+  }
 }

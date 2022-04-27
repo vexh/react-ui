@@ -3,7 +3,9 @@ import Scroll from "./scroll";
 
 export default function ScrollExample() {
   return (
-    <Scroll style={{ height: '200px' }}>
+    <Scroll style={{ height: '200px' }} onPull={() => {
+      console.log('ouPull from Example');
+    }}>
       <p>1</p>
       <p>2</p>
       <p>3</p>
